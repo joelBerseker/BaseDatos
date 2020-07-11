@@ -1,0 +1,15 @@
+td {
+    border: 1px #DDD solid;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: brown;
+    color: #FFF;
+}
+.box {
+    background-color: brown;
+    padding: 5px;
+    height: 60px; 
+}
