@@ -2,30 +2,28 @@
     <thead>
         <th>Calle</th>
         <th>Numero</th>
-        <th>Tipo</th>
-        <th>Codigo Postal</th>
-        <th>Area</th>
-        <th>Otro Dato</th>
-        <th>Zona Urban</th>
+        <th>Escalera</th>
+        <th>Planta</th>
+        <th>Puerta</th>
+        <th>DNI Persona</th>
         <th>Estado</th>
     </thead>
     <tbody>
         <?php
-            $query = "SELECT * FROM r1z_vivienda";
+            $query = "SELECT * FROM r2z_piso_habitado where PisoHabEstReg ='A'";
             require_once '../includes/db.php';
             $resultProduct= mysqli_query($conn, $query);
             $cont = 0;
             while($row= mysqli_fetch_array($resultProduct)){
         ?>
         <tr id="<?=$cont?>" onclick="select(this)" class="">
-            <td><?=$row['VivCall']?></td>
-            <td><?=$row['VivNum']?></td>
-            <td><?=$row['VivTip']?></td>
-            <td><?=$row['VivCodPos']?></td>
-            <td><?=$row['VivMet']?></td>
-            <td><?=$row['VivOtrDat']?></td>
-            <td><?=$row['VivZonUrbNom']?></td>
-            <td><?=$row['VivEstReg']?></td>
+            <td><?=$row['PisoHabCall']?></td>
+            <td><?=$row['PisoHabNum']?></td>
+            <td><?=$row['PisoHabEsc']?></td>
+            <td><?=$row['PisoHabPla']?></td>
+            <td><?=$row['PisoHabPue']?></td>
+            <td><?=$row['PisoHabPerDni']?></td>
+            <td><?=$row['PisoHabEstReg']?></td>
         </tr>
         <?php
                 $cont = $cont+1;

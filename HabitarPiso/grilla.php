@@ -8,24 +8,24 @@
 <div class="container col-8 offset-2 border">
     <div class="row" >
         <div class="col-10 offset-1">
-            <h1 class="font-weight-bold">Vivienda</h1>
+            <h1 class="font-weight-bold">Pisos</h1>
         </div>
         <div class="col-10 offset-1">
                 <form id="formajax01" method="POST">
                 <fieldset>
-                    <legend>Registro de Viviendas</legend>
+                    <legend>Registro de Pisos</legend>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Zona</label>
+                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Calle</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="exampleFormControlSelect1" name="zona" required>
-                                <option value="">Selecciona la Zona</option>
+                            <select class="form-control" id="calle" name="calle" required>
+                                <option value="">Selecciona la Calle</option>
                                 <?php
-                                    $query = "SELECT * FROM r1z_zona_urbana where ZonaUrbEstReg='A'";
+                                    $query = "SELECT DISTINCT PisCall  FROM r1z_piso where PisEstReg='A'";
                                     require_once '../includes/db.php';
                                     $resultProduct= mysqli_query($conn, $query);
                                     while($row= mysqli_fetch_array($resultProduct)){
                                 ?>
-                                    <option value="<?=$row['ZonUrbNom']?>"><?=$row['ZonUrbNom']?></option>
+                                    <option value="<?=$row['PisCall']?>"><?=$row['PisCall']?></option>
                                 <?php
                                     }
                                 ?>
@@ -33,42 +33,53 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Calle</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="calle" class="form-control form-control-sm" id="zona"   value="" placeholder="Ingrese la Calle">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Numero</label>
                         <div class="col-sm-10">
-                            <input type="text" name="numero" class="form-control form-control-sm" id="zona"   value="" placeholder="Ingrese numero de Calle">
+                            <select class="form-control" id="numero" name="numero" required>
+                                <option value="">Selecciona el Numero</option>
+                            </select>   
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tipo de Vivienda</label>
+                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Escalera</label>
                         <div class="col-sm-10">
-                        <select class="form-control" name="tipo" id="exampleFormControlSelect1" required>
-                            <option value="B">Bloque de Casas</option>
-                            <option value="C">Casa Particular</option>
-                        </select>
+                            <select class="form-control" id="escalera" name="escalera" required>
+                                <option value="">Selecciona La escalera</option>
+                            </select>   
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Codigo Postal</label>
+                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Planta</label>
                         <div class="col-sm-10">
-                            <input type="number" name="postal" class="form-control form-control-sm" id="zona"   value="" placeholder="Ingrese Codigo Postal">
+                            <select class="form-control" id="planta" name="planta" required>
+                                <option value="">Selecciona La planta</option>
+                            </select>   
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Otros datos de Zona</label>
+                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Puerta</label>
                         <div class="col-sm-10">
-                        <input type="text" name="OtrosDatos" class="form-control form-control-sm"   value="" id="otrZona" placeholder="Otros Datos sobre la Zona">
+                            <select class="form-control" id="puerta" name="puerta" required>
+                                <option value="">Selecciona La puerta</option>
+                            </select>   
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" >Metros</label>
+                        <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Habita</label>
                         <div class="col-sm-10">
-                        <input type="number" name="metros" class="form-control form-control-sm"   min="1"  id="Estado" placeholder="Ingrese El tamaño en Metros">
+                            <select class="form-control" id="dueño" name="dueño" required>
+                                <option value="">Selecciona habitante</option>
+                                <?php
+                                    $query = "SELECT PerDNI  FROM r2z_persona where PerEstReg='A' AND `PerDniCabFam` IS NULL";
+                                    require_once '../includes/db.php';
+                                    $resultProduct= mysqli_query($conn, $query);
+                                    while($row= mysqli_fetch_array($resultProduct)){
+                                ?>
+                                    <option value="<?=$row['PerDNI']?>"><?=$row['PerDNI']?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>   
                         </div>
                     </div>
                     <div class="form-group row">
@@ -82,7 +93,7 @@
         </div>
         <div class="col-10 offset-1">
             <fieldset>
-                <legend>Tabla de Viviendas</legend>
+                <legend>Tabla de Pisos</legend>
         
                 <div id="recargar01">	
                     <?php 
